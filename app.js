@@ -12,10 +12,17 @@ mongoose.connect(process.env.MONGODB_URI,
         console.log('Connected to MongoDB!!!')
     });
 
+require('./api/models/user');
+require('./api/models/person');
+require('./api/models/address');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: false}));
+const userRoutes = require('./api/routes/users');
+const personRoutes = require('./api/routes/persons');
+const addressRoutes = require('./api/routes/address');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
@@ -35,6 +42,10 @@ const cors = (req, res, next) => {
     next();
 }
 app.use(cors);
+
+app.use('/api/users', userRoutes);
+app.use('/api/persons', personRoutes);
+app.use('/api/address', addressRoutes);
 
 app.use('/api', (req, res, next) => {
     res.status(200).json({

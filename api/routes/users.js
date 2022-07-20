@@ -5,6 +5,10 @@ const controllerUser = require('../controllers/user-controller');
 
 router.get('/', controllerUser.verifyJWT, controllerUser.get_all_users);
 
+router.get('/info', controllerUser.verifyJWT, controllerUser.get_info_user);
+
+router.get('/:id', controllerUser.get_by_id_user);
+
 router.post('/signup', controllerUser.signup_user);
 
 router.post('/login', controllerUser.login_user);

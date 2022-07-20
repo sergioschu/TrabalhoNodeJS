@@ -1,6 +1,6 @@
 {
     "env": {
         "PORT": 3000,
-        "MONGODB_URI": "mongodb://localhost:27017/TrabalhoPos"
+        "MONGODB_URI": "mongodb://localhost:27017/trabalho-node-js"
     }
 }
