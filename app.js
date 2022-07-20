@@ -29,9 +29,9 @@ app.use(bodyParser.json());
 require('./api/config/passport')(passport);
 app.use(passport.initialize());
 
-/*const cors = (req, res, next) => {
+const cors = (req, res, next) => {
     const whitelist = [
-        'http://localhost:8080'
+        '177.107.124.90'
     ];
     const origin = req.header.origin;
     if (whitelist.indexOf(origin) > -1) {
@@ -41,7 +41,7 @@ app.use(passport.initialize());
     res.setHeader('Access-Control-Allow-Headers', 'token,Content-Type,Authorization, x-access-token');
     next();
 }
-app.use(cors);*/
+app.use(cors);
 
 app.use('/api/users', userRoutes);
 app.use('/api/persons', personRoutes);
