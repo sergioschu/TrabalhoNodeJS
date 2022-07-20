@@ -3,14 +3,14 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-/*mongoose.connect(process.env.MONGODB_URI,
+mongoose.connect(process.env.MONGODB_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }, err => {
         if (err) throw err;
         console.log('Connected to MongoDB!!!')
-    });*/
+    });
 
 require('./api/models/user');
 require('./api/models/person');
@@ -29,9 +29,9 @@ app.use(bodyParser.json());
 require('./api/config/passport')(passport);
 app.use(passport.initialize());
 
-/*const cors = (req, res, next) => {
+const cors = (req, res, next) => {
     const whitelist = [
-        '177.107.124.90'
+        'http://177.107.124.90:8080'
     ];
     const origin = req.header.origin;
     if (whitelist.indexOf(origin) > -1) {
@@ -41,7 +41,7 @@ app.use(passport.initialize());
     res.setHeader('Access-Control-Allow-Headers', 'token,Content-Type,Authorization, x-access-token');
     next();
 }
-app.use(cors);*/
+app.use(cors);
 
 app.use('/api/users', userRoutes);
 app.use('/api/persons', personRoutes);
